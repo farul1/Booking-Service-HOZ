@@ -1,0 +1,15 @@
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+type Booking {
+    id: ID!
+    user_id: Int!
+    service_id: Int!
+    booking_time: DateTime!
+    status: String!
+    total_price: Float!
+}
+
+type Query {
+    bookings_by_user(user_id: ID! @eq): [Booking!]! @where(key: "user_id") @all
+    booking(id: ID! @eq): Booking @find
+}
